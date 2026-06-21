@@ -5,7 +5,7 @@
                     <form #ecommerce="ngForm" (ngSubmit)="onSubmit()">
                         <h1 class="text-center"> E-Commerce Product Review Form</h1>
                         <div class="form-group">
-                            <label for="Customername">Customername</label>
+                            <label for="Customername">Customer Name*</label>
                             <input type="text" pattern="^[A-Za-z]+$" class="form-control" required ngModel
                                 name="Customername" #Customername="ngModel">
                             <strong class="text-danger"
@@ -16,7 +16,7 @@
                             </div>
 
                         <div class="form-group">
-                            <label for="ProductName">ProductName</label>
+                            <label for="ProductName">Product Name*</label>
                             <input type="text" class="form-control" required ngModel name="ProductName"
                                 #ProductName="ngModel">
                             <strong class="text-danger"
@@ -25,7 +25,7 @@
 
 
                         <div class="form-group">
-                            <label for="Rating">Rating</label>
+                            <label for="Rating">Rating*</label>
                             <ng-container *ngFor="let r of ratingArr">
                                 <input type="radio" class="ml-2" [value]="r" [id]="r" required ngModel name="Rating"
                                     #Rating="ngModel">
@@ -39,7 +39,7 @@
 
 
                         <div class="form-group">
-                            <label for="ReviewTitle">Review Title</label>
+                            <label for="ReviewTitle">Review Title*</label>
                             <input type="text" class="form-control" minlength="5" required ngModel name="ReviewTitle"
                                 #ReviewTitle="ngModel">
                             <strong class="text-danger"
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="ReviewDescription">Review Description</label>
+                            <label for="ReviewDescription">Review Description*</label>
                             <input type="text" class="form-control" minlength="5" required ngModel
                                 name="ReviewDescription" #ReviewDescription="ngModel">
                             <strong class="text-danger"
