@@ -1,0 +1,74 @@
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <form #ecommerce="ngForm" (ngSubmit)="onSubmit()">
+                        <h1 class="text-center"> E-Commerce Product Review Form</h1>
+                        <div class="form-group">
+                            <label for="Customername">Customername</label>
+                            <input type="text" pattern="^[A-Za-z]+$" class="form-control" required ngModel
+                                name="Customername" #Customername="ngModel">
+                            <strong class="text-danger"
+                                *ngIf="Customername.touched && Customername.hasError('required')">this field is required!!</strong>
+                                <strong class="text-danger"
+                                *ngIf="Customername.dirty && Customername.hasError('pattern')">This field accept only
+                                alphabet!!</strong>
+                            </div>
+
+                        <div class="form-group">
+                            <label for="ProductName">ProductName</label>
+                            <input type="text" class="form-control" required ngModel name="ProductName"
+                                #ProductName="ngModel">
+                            <strong class="text-danger"
+                                *ngIf="ProductName.touched &&ProductName.hasError('required')">this field is required!!</strong>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="Rating">Rating</label>
+                            <ng-container *ngFor="let r of ratingArr">
+                                <input type="radio" class="ml-2" [value]="r" [id]="r" required ngModel name="Rating"
+                                    #Rating="ngModel">
+                                {{r}}
+
+                            </ng-container>
+                            <strong class="text-danger"
+                                *ngIf="ecommerce.submitted &&! ecommerce.controls['Rating'].valid">this field is required!!</strong>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="ReviewTitle">Review Title</label>
+                            <input type="text" class="form-control" minlength="5" required ngModel name="ReviewTitle"
+                                #ReviewTitle="ngModel">
+                            <strong class="text-danger"
+                                *ngIf="ReviewTitle.touched &&ReviewTitle.hasError('required')">this field is required!!</strong>
+
+                            <strong class="text-danger" *ngIf="ReviewTitle.dirty &&ReviewTitle.hasError('minlength')">
+                                should be the 5 above more then characters
+                            </strong>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ReviewDescription">Review Description</label>
+                            <input type="text" class="form-control" minlength="5" required ngModel
+                                name="ReviewDescription" #ReviewDescription="ngModel">
+                            <strong class="text-danger"
+                                *ngIf="ReviewDescription.touched && ReviewDescription.hasError('required')">this field
+                                is required!!</strong>
+
+                            <strong class="text-danger"
+                                *ngIf="ReviewDescription.dirty && ReviewDescription.hasError('minlength')">
+                                should be the 30 more than characters
+                            </strong>
+
+                            </div>
+
+                            <button class="btn btn-primary">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

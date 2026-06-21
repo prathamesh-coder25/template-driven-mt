@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card">
+        <div class="card-body">
+          <form #studentform="ngForm" (ngSubmit)="onSubmit()">
+            <h1 class="text-center"> Student Registration Form</h1>
+
+            <div class="form-group">
+              <label for="Fullname">Full Name*</label>
+              <input type="text" #fullname="ngModel" class="form-control" name="Fullname" 
+              pattern="^[A-Za-z ]+$" required ngModel>
+               <strong class="text-danger d-block mt-2" *ngIf="fullname.touched && fullname.hasError('required')">
+                This field is required !!!
+              </strong>
+             <strong class="text-danger d-block mt-2" *ngIf="fullname.dirty && fullname.hasError('pattern')">
+                plz enter only alphabet
+              </strong> </div>
+
+            <div class="form-group">
+              <label for="Email">Email*</label>
+              <input type="text" #Email="ngModel" class="form-control" name="Email"
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$" required ngModel>
+              <strong class="text-danger d-block mt-2" *ngIf="Email.touched && Email.hasError('required')">
+                This field is required !!!
+              </strong>
+              <strong class="text-danger d-block mt-2" *ngIf="Email.dirty && Email.hasError('pattern')">
+                plz enter valid email Id
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <label for="Mobilenumber">Mobile Number*</label>
+              <input type="text" #Mobilenumber="ngModel" class="form-control" name="Mobilenumber"
+                pattern="^[6-9][0-9]{9}$" required ngModel>
+             <strong class="text-danger d-block mt-2" *ngIf="Mobilenumber.touched &&Mobilenumber.hasError('required')">
+                This field is required !!!
+              </strong>
+             <strong class="text-danger d-block mt-2"
+             *ngIf="Mobilenumber.dirty && (Mobilenumber.hasError('pattern') || Mobilenumber.hasError('maxlength'))">
+             Please enter a valid 10-digit number
+             </strong>
+            </div>
+
+            <div class="form-group">
+              <label *ngFor="let gen of GenderArr" class="mr-2">
+                <input type="radio" name="gender" [value]="gen" ngModel #gender="ngModel" required>
+                {{ gen }}
+              </label>
+              <br>
+              <small class="text-danger mt-2 font-weight-bold"
+                *ngIf="studentform.submitted && !studentform.controls['gender']?.valid">
+                Please select gender
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label for="coursename" class="d-block mb-2"> Select Course*</label>
+              <select id="coursename" name="coursename" required ngModel #coursename="ngModel"
+                class="form-control w-100">
+                <option [value]="course" *ngFor="let course of CourseArr">
+                  {{course}}
+                </option>
+              </select>
+              <strong class="text-danger d-block mt-2" *ngIf="coursename.touched && coursename.hasError('required')">
+                This field is required !!!
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <label for="Address">Address*</label>
+              <textarea rows="2" type="text" class="form-control" #address="ngModel" ngModel required
+                name="address"></textarea>
+             <strong class="text-danger d-block mt-2" *ngIf="address.touched && address.hasError('required')">
+                This field is required !!!
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <input type="checkbox" required name="acceptterm" ngModel #acceptterm="ngModel" class="mr-2">
+              <label for="">Accept Terms & condition</label>
+               <strong class="text-danger d-block mt-2" *ngIf="acceptterm.touched && acceptterm.hasError('required')">
+                This field is required !!!
+              </strong>
+            </div>
+            <button class="btn btn-primary btn-block">Submit</button>
+
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
